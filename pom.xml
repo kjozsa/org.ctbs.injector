@@ -12,12 +12,12 @@
     <dependency>
       <groupId>org.aspectj</groupId>
       <artifactId>aspectjrt</artifactId>
-      <version>1.6.10</version>
+      <version>1.6.11</version>
     </dependency>
     <dependency>
       <groupId>org.aspectj</groupId>
       <artifactId>aspectjtools</artifactId>
-      <version>1.6.10</version>
+      <version>1.6.11</version>
     </dependency>
     <dependency>
       <groupId>junit</groupId>

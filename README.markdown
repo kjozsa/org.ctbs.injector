@@ -26,7 +26,6 @@ maven configuration:
             <verbose>true</verbose>
             <privateScope>true</privateScope>
             <complianceLevel>1.6</complianceLevel>
-
             <aspectLibraries>
               <aspectLibrary>
                 <groupId>org.ctbs</groupId>
