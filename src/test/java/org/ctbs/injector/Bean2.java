@@ -12,7 +12,7 @@ import org.ctbs.injector.Injector.Injected;
 public class Bean2 {
 
 	@Injected
-	ManagedBean managedBean;
+	static ManagedBean managedBean;
 
 	public void stuff() {
 		managedBean.doSomething();
