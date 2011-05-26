@@ -66,8 +66,10 @@ public aspect Injector {
 			result = register(clazz);
 		}
 
-		// write target object field value for local caching 
-		writeField(fieldSignature.getField(), thisJoinPoint.getTarget(), result);
+		// write target object field value for local caching
+		if (fieldSignature.getField().isAccessible()) {
+			writeField(fieldSignature.getField(), thisJoinPoint.getTarget(), result);
+		}
 		return result;
 	}
 
