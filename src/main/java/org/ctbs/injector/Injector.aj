@@ -12,7 +12,6 @@ import java.lang.reflect.Field;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
-import org.aspectj.ajdt.internal.compiler.ast.Proceed;
 import org.aspectj.lang.reflect.FieldSignature;
 
 
