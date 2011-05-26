@@ -8,9 +8,11 @@ import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
+import java.lang.reflect.Field;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
+import org.aspectj.ajdt.internal.compiler.ast.Proceed;
 import org.aspectj.lang.reflect.FieldSignature;
 
 
@@ -48,11 +50,40 @@ public aspect Injector {
 
 
 	Object around() : get_injected() {
-		Class<?> clazz = ((FieldSignature) thisJoinPoint.getSignature()).getFieldType();
-		Object result = instances.get(clazz);
-		return result == null ? register(clazz) : result;
+		// return local field cache if any
+		Object result = proceed();
+		if (result != null) {
+			return result;
+		}
+		
+		// get cached value for field type
+		FieldSignature fieldSignature = (FieldSignature) thisJoinPoint.getSignature();
+		Class<?> clazz = fieldSignature.getFieldType();
+		result = instances.get(clazz);
+
+		// create cached value
+		if (result == null) {
+			result = register(clazz);
+		}
+
+		// write target object field value for local caching 
+		writeField(fieldSignature.getField(), thisJoinPoint.getTarget(), result);
+		return result;
 	}
 
+	/**
+	 * @param field to set
+	 * @param target can be null for static fields
+	 * @param value to set
+	 */
+	private void writeField(Field field, Object target, Object value) {
+		try {
+			field.set(target, value);	
+		} catch (Exception e) {
+			throw new RuntimeException("failed to set field value", e);
+		}
+	}
+	
 	private Object register(Class<?> clazz) {
 		try {
 			Object result = clazz.newInstance();

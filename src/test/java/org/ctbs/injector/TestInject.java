@@ -30,6 +30,7 @@ public class TestInject {
 	public void test() {
 		Bean1 b11 = new Bean1();
 		b11.whatever();
+		b11.whatever();
 		Bean1 b12 = new Bean1();
 		b12.whatever();
 
