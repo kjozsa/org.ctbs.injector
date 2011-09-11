@@ -46,6 +46,7 @@
           <verbose>true</verbose>
           <privateScope>true</privateScope>
           <complianceLevel>1.6</complianceLevel>
+          <xhasMember>true</xhasMember>
         </configuration>
         <executions>
           <execution>

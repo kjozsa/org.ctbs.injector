@@ -3,8 +3,8 @@ injector - a primitive dependency injection mechanism for trivial use cases
 
 usage:
 ------
-* attach @Managed to a class to make it injectable
-* attach @Injected to fields to get a @Managed type injected
+* attach @Managed to a class to make it an injectable managed instance 
+* attach @Injected to fields to get a @Managed type instance injected
 
 
 maven configuration:
